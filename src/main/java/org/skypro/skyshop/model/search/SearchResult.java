@@ -1,19 +1,11 @@
 ﻿package org.skypro.skyshop.model.search;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.UUID;
-
 public class SearchResult {
     private final String id;
     private final String name;
     private final String contentType;
 
-    @JsonCreator
-    public SearchResult(@JsonProperty("id") String id, 
-                       @JsonProperty("name") String name, 
-                       @JsonProperty("contentType") String contentType) {
+    public SearchResult(String id, String name, String contentType) {
         this.id = id;
         this.name = name;
         this.contentType = contentType;

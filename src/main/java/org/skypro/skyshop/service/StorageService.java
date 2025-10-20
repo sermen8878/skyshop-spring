@@ -15,52 +15,42 @@ public class StorageService {
     public StorageService() {
         this.availableProducts = new HashMap<>();
         this.availableArticles = new HashMap<>();
-        fillWithTestData();
+        initializeTestData();
     }
 
-    private void fillWithTestData() {
+    private void initializeTestData() {
         // Добавляем тестовые продукты
-        UUID product1Id = UUID.randomUUID();
-        availableProducts.put(product1Id, new SimpleProduct(product1Id, "Laptop", 1000));
-        
-        UUID product2Id = UUID.randomUUID();
-        availableProducts.put(product2Id, new DiscountedProduct(product2Id, "Smartphone", 500, 20));
-        
-        UUID product3Id = UUID.randomUUID();
-        availableProducts.put(product3Id, new FixPriceProduct(product3Id, "USB Cable"));
+        availableProducts.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(), \"Яблоки\", 100));
+        availableProducts.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(), \"Бананы\", 80));
+        availableProducts.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(), \"Апельсины\", 120, 20));
+        availableProducts.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(), \"Хлеб\"));
+        availableProducts.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(), \"Молоко\", 90, 10));
 
         // Добавляем тестовые статьи
-        UUID article1Id = UUID.randomUUID();
-        availableArticles.put(article1Id, new Article(article1Id, 
-            "How to choose a laptop", 
-            "This article will help you choose the best laptop for your needs."));
-        
-        UUID article2Id = UUID.randomUUID();
-        availableArticles.put(article2Id, new Article(article2Id,
-            "Smartphone maintenance tips",
-            "Learn how to properly maintain your smartphone for longer lifespan."));
+        availableArticles.put(UUID.randomUUID(), new Article(UUID.randomUUID(), 
+            \"Как выбрать свежие фрукты\", 
+            \"Свежие фрукты должны иметь яркий цвет и приятный аромат...\"));
+        availableArticles.put(UUID.randomUUID(), new Article(UUID.randomUUID(),
+            \"Польза органических продуктов\",
+            \"Органические продукты содержат больше витаминов и минералов...\"));
     }
 
     public Collection<Product> getAllProducts() {
-        return availableProducts.values();
+        return Collections.unmodifiableCollection(availableProducts.values());
     }
 
     public Collection<Article> getAllArticles() {
-        return availableArticles.values();
+        return Collections.unmodifiableCollection(availableArticles.values());
     }
 
-    public Collection<Searchable> getAllSearchables() {
-        List<Searchable> searchables = new ArrayList<>();
-        searchables.addAll(availableProducts.values());
-        searchables.addAll(availableArticles.values());
-        return searchables;
+    public Collection<Searchable> getAllSearchableItems() {
+        List<Searchable> searchableItems = new ArrayList<>();
+        searchableItems.addAll(availableProducts.values());
+        searchableItems.addAll(availableArticles.values());
+        return Collections.unmodifiableCollection(searchableItems);
     }
 
     public Optional<Product> getProductById(UUID id) {
         return Optional.ofNullable(availableProducts.get(id));
-    }
-
-    public Optional<Article> getArticleById(UUID id) {
-        return Optional.ofNullable(availableArticles.get(id));
     }
 }
