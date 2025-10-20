@@ -28,7 +28,7 @@ public class BasketService {
 
     public UserBasket getUserBasket() {
         List<BasketItem> basketItems = new ArrayList<>();
-        
+
         productBasket.getProducts().forEach((id, count) -> {
             Product product = storageService.getProductById(id)
                     .orElseThrow(() -> new IllegalStateException("Product not found with id: " + id));
