@@ -12,7 +12,7 @@ public class ShopControllerAdvice {
 
     @ExceptionHandler(NoSuchProductException.class)
     public ResponseEntity<ShopError> handleNoSuchProduct(NoSuchProductException e) {
-        ShopError error = new ShopError("PRODUCT_NOT_FOUND", e.getMessage());
+        ShopError error = new ShopError(\"PRODUCT_NOT_FOUND\", \"Товар не найден: \" + e.getMessage());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }

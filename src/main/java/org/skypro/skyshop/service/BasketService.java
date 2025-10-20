@@ -23,7 +23,7 @@ public class BasketService {
 
     public void addProduct(UUID id) {
         storageService.getProductById(id)
-                .orElseThrow(() -> new NoSuchProductException(\"Product not found with id: \" + id));
+                .orElseThrow(() -> new NoSuchProductException(\"Товар с ID \" + id + \" не найден\"));
         productBasket.addProduct(id);
     }
 
@@ -32,7 +32,7 @@ public class BasketService {
         
         productBasket.getProducts().forEach((id, count) -> {
             Product product = storageService.getProductById(id)
-                    .orElseThrow(() -> new NoSuchProductException(\"Product not found with id: \" + id));
+                    .orElseThrow(() -> new NoSuchProductException(\"Товар с ID \" + id + \" не найден в корзине\"));
             basketItems.add(new BasketItem(product, count));
         });
 
