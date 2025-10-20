@@ -9,10 +9,10 @@ public class DiscountedProduct extends Product {
     public DiscountedProduct(UUID id, String name, int basePrice, int discountPercent) {
         super(id, name);
         if (basePrice <= 0) {
-            throw new IllegalArgumentException("Base price must be greater than 0");
+            throw new IllegalArgumentException(\"Base price must be greater than 0\");
         }
         if (discountPercent < 0 || discountPercent > 100) {
-            throw new IllegalArgumentException("Discount percent must be between 0 and 100");
+            throw new IllegalArgumentException(\"Discount percent must be between 0 and 100\");
         }
         this.basePrice = basePrice;
         this.discountPercent = discountPercent;
@@ -28,16 +28,8 @@ public class DiscountedProduct extends Product {
         return true;
     }
 
-    public int getBasePrice() {
-        return basePrice;
-    }
-
-    public int getDiscountPercent() {
-        return discountPercent;
-    }
-
     @Override
     public String toString() {
-        return getName() + ": " + getPrice() + " (" + discountPercent + "%)";
+        return getName() + \": \" + getPrice() + \" (\" + discountPercent + \"%)\";
     }
 }
