@@ -20,11 +20,17 @@ public class StorageService {
 
     private void initializeTestData() {
         // Добавляем тестовые продукты
-        availableProducts.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(), \"Яблоки\", 100));
-        availableProducts.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(), \"Бананы\", 80));
-        availableProducts.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(), \"Апельсины\", 120, 20));
-        availableProducts.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(), \"Хлеб\"));
-        availableProducts.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(), \"Молоко\", 90, 10));
+        UUID appleId = UUID.randomUUID();
+        UUID bananaId = UUID.randomUUID();
+        UUID orangeId = UUID.randomUUID();
+        UUID breadId = UUID.randomUUID();
+        UUID milkId = UUID.randomUUID();
+
+        availableProducts.put(appleId, new SimpleProduct(appleId, \"Яблоки\", 100));
+        availableProducts.put(bananaId, new SimpleProduct(bananaId, \"Бананы\", 80));
+        availableProducts.put(orangeId, new DiscountedProduct(orangeId, \"Апельсины\", 120, 20));
+        availableProducts.put(breadId, new FixPriceProduct(breadId, \"Хлеб\"));
+        availableProducts.put(milkId, new DiscountedProduct(milkId, \"Молоко\", 90, 10));
 
         // Добавляем тестовые статьи
         availableArticles.put(UUID.randomUUID(), new Article(UUID.randomUUID(), 
